@@ -1,0 +1,25 @@
+name: $(Date:yyyyMMdd).$(Rev:r) $(organization) - $(project)
+appendCommitMessageToRunName: false
+
+trigger: none
+pr: none
+
+#pool: 'Self-hosted'
+pool: 'Azure Pipelines'
+
+steps:
+- bash: |
+    echo "Try to run list_project_users_with_basic_access_level.sh"
+    /bin/bash ./list_project_users_with_basic_access_level.sh
+  displayName: 'run bash script'
+  failOnStderr: true
+  env:
+    AZURE_DEVOPS_EXT_PAT: $(ado_pat)
+    MAP_ORGANIZATION: $(organization)
+    MAP_PROJECT: $(project)
+
+- task: ShahzebKhan.sap-azure-pipelines-html-report.PublishHtmlReport.PublishHtmlReport@3
+  displayName: 'publish results'
+  inputs:
+    tabName: "Results"
+    reportDir: './results.html'
