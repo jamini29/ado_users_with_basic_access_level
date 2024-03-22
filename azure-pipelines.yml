@@ -18,8 +18,8 @@ steps:
     MAP_ORGANIZATION: $(organization)
     MAP_PROJECT: $(project)
 
-- task: ShahzebKhan.sap-azure-pipelines-html-report.PublishHtmlReport.PublishHtmlReport@3
-  displayName: 'publish results'
-  inputs:
-    tabName: "Results"
-    reportDir: './results.html'
+#- task: ShahzebKhan.sap-azure-pipelines-html-report.PublishHtmlReport.PublishHtmlReport@3
+#  displayName: 'publish results'
+#  inputs:
+#    tabName: "Results"
+#    reportDir: './results.html'
